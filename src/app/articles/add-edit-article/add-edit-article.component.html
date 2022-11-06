@@ -1,0 +1,48 @@
+<h3 *ngIf="id !== 0">Modification d'article</h3>
+<h3 *ngIf="id === 0">Ajout d'un article</h3>
+
+<form [formGroup]="form">
+  <div class="row">
+
+    <div class="mb-3 col-lg-6">
+      <label for="ref" class="form-label">Référence</label>
+      <input type="text" class="form-control" id="ref" placeholder="Référence" formControlName="ref">
+    </div>
+
+    <div class="mb-3 col-lg-6">
+      <label for="name" class="form-label">Nom de l'article</label>
+      <input type="text" class="form-control" id="name" placeholder="Nom de l'article" formControlName="name">
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="mb-3 col-lg-6">
+      <label for="price" class="form-label">Prix</label>
+      <input type="text" class="form-control" id="price" placeholder="Prix" formControlName="price">
+    </div>
+
+    <div class="mb-3 col-lg-6">
+      <label for="quantity" class="form-label">Quantité</label>
+      <input type="text" class="form-control" id="quantity" placeholder="Quantité" formControlName="quantity">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="mb-3 col-lg-6">
+      <label for="type" class="form-label">Type</label>      
+      <select class="form-control" id="type" formControlName="type">
+        <option value="1">Alimentaire</option>
+        <option value="2">Non alimentaire</option>
+      </select>
+    </div>
+  </div>
+
+
+  <div class="input-group">
+    <button [disabled]="form.invalid" class="btn btn-primary" type="button" (click)="save()">
+      <span *ngIf="id !== 0">Sauvegarder</span>
+      <span *ngIf="id === 0">Ajouter</span>
+    </button>
+    <button *ngIf="id !== 0" class="btn btn-danger" type="button" (click)="delete()">Supprimer</button>
+  </div>
+</form>

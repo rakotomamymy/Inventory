@@ -1,0 +1,30 @@
+<h3>Liste des articles</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Référence <input class="form-control" type="text" name="searchRef" placeholder="Filtrer par référence" [(ngModel)]="filter.ref" (input)="onSearch()" /></th>
+      <th>Nom <input class="form-control" type="text" name="searchName" placeholder="Filtrer par nom" [(ngModel)]="filter.name" (input)="onSearch()" /></th>
+      <th>Prix <input class="form-control" type="text" name="searchPrice" placeholder="Filtrer par prix" [(ngModel)]="filter.price" (input)="onSearch()" /></th>
+      <th>Quantité <input class="form-control" type="text" name="searchQuantity" placeholder="Filtrer par quantité" [(ngModel)]="filter.quantity" (input)="onSearch()" /></th>
+      <th>
+        Type 
+        <select class="form-control" [(ngModel)]="filter.articleTypeId" (change)="onSearch()">
+          <option value=""></option>
+          <option value="1">Alimentaire</option>
+          <option value="2">Non alimentaire</option>
+        </select>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items">
+      <td>{{item.ref}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.price}}</td>
+      <td>{{item.quantity}}</td>
+      <td>{{item.articleTypeName}}</td>
+      <td><a class="link-primary" (click)="view(item.id)">Afficher</a> | <a class="link-primary" (click)="edit(item.id)">Modifier</a></td>
+    </tr>
+  </tbody>
+</table>
+<ngb-pagination [collectionSize]="itemsCount" [pageSize]="pageSize" [(page)]="currentPage" (pageChange)="onPageChanged()" aria-label="Default pagination" class="d-flex justify-content-end"></ngb-pagination>

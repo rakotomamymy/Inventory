@@ -1,0 +1,31 @@
+<h3>Article</h3>
+
+<table class="table table-striped">
+  <tbody>
+    <tr>
+      <td>Référence</td>
+      <td>{{item.ref}}</td>
+    </tr>
+    <tr>
+      <td>Nom</td>
+      <td>{{item.name}}</td>
+    </tr>
+    <tr>
+      <td>Prix</td>
+      <td>{{item.price}}</td>
+    </tr>
+    <tr>
+      <td>Quantité</td>
+      <td>{{item.quantity}}</td>
+    </tr>
+    <tr>
+      <td>Type</td>
+      <td>{{item.articleTypeName}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="input-group">
+  <button class="btn btn-primary" type="button" (click)="edit()">Modifier</button>
+  <button class="btn btn-danger" type="button" (click)="delete()">Supprimer</button>
+</div>
