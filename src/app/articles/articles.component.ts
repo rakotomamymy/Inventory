@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ArticleService } from '../shared/article.service';
-import { Article, ArticleFilter } from '../shared/model';
+import { Article, ArticleFilter, ArticlesFilterResult } from '../shared/model';
 
 @Component({
   selector: 'app-articles',
@@ -10,15 +11,13 @@ import { Article, ArticleFilter } from '../shared/model';
 })
 export class ArticlesComponent implements OnInit {
 
-  items: Article[] = [];
-
-  itemsCount = 0;
-  pageSize = 5;
+  articles$?: Observable<ArticlesFilterResult>;
+  pageSize = 10;
   currentPage = 1;
 
   filter: ArticleFilter = {};
 
-  constructor(private router: Router, private svc: ArticleService) { }
+  constructor(private router: Router, private svc: ArticleService) {}
 
   ngOnInit(): void {
     this.updateData();
@@ -34,10 +33,7 @@ export class ArticlesComponent implements OnInit {
   }
 
   updateData() {
-    this.svc.getItems(this.filter, this.currentPage, this.pageSize).subscribe(res => {
-      this.items = res.items;
-      this.itemsCount = res.count;
-    });    
+    this.articles$ = this.svc.getItems(this.filter, this.currentPage, this.pageSize);
   }
 
   view(id: number) {

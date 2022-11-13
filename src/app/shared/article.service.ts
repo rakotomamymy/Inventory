@@ -29,7 +29,7 @@ export class ArticleService {
       return this.apiSvc.get<Article>(`${Url.GET}/${id}`);
     } else {
       console.log('Element with id = 0 not found');
-      return null;
+      return undefined;
     }
   }
 
